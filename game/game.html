@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(18, auto);;
+  background-color: #2196F3;
+  position:relative;
+  width: 1295px;‬
+  height:90px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  width:30px;
+  height:30px;
+}
+#animate {
+	padding:4px;
+  width: 62px;
+  height: 62px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#animate1 {
+	padding:4px;
+  width: 62px;
+  height: 62px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>JavaScript Graphical Dice Function</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id='p1Score'></div>
+<div id='p2Score'></div>
+<br>
+<img id="die" src="1.jpg" width="50" height="50">
+
+<button onclick="AniDice()">Roll Dice</button>
+<button onclick="stopDice()">Stop</button>
+<br>
+
+<div class="grid-container">
+<div id ="animate"><img src="car.png" style="width: 60px; height: 60px;"></div>
+  <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>  
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">10</div>
+  <div class="grid-item">11</div>
+  <div class="grid-item">12</div>  
+  <div class="grid-item">13</div>
+  <div class="grid-item">14</div>
+  <div class="grid-item">15</div> 
+  <div class="grid-item">16</div>
+  <div class="grid-item">17</div>
+  <div class="grid-item">End</div>
+</div>
+
+<br>
+<div class="grid-container">
+<div id ="animate1"><img src="car2.png" style="width: 60px; height: 60px;"></div>
+  <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>  
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">10</div>
+  <div class="grid-item">11</div>
+  <div class="grid-item">12</div>  
+  <div class="grid-item">13</div>
+  <div class="grid-item">14</div>
+  <div class="grid-item">15</div> 
+  <div class="grid-item">16</div>
+  <div class="grid-item">17</div>
+  <div class="grid-item">End</div>
+</div>
+
+
+<script>
+var player1 = {
+	pos: 0,
+	score: 0,
+	currentBlock: 1
+};
+
+var player2 = {
+	pos: 0,
+	score: 0,
+	currentBlock: 1
+};
+
+var currentPlayer = 1;
+
+function movePlayer1(x) {
+	var nextBox = player1.pos+(72*x);
+  var elem = document.getElementById("animate");
+ 
+  
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (player1.pos >= nextBox) {
+      clearInterval(id);
+    }
+else {
+      player1.pos+=1;
+      elem.style.left = player1.pos + "px";
+    }
+  }
+}
+
+function movPlayer2(n) {
+	var nextBox = player2.pos+(72*n);
+  var elem = document.getElementById("animate1");
+ 
+  
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (player2.pos >= nextBox) {
+      clearInterval(id);
+    }
+else {
+      player2.pos+=1;
+      elem.style.left = player2.pos + "px";
+    }
+  }
+}
+
+function playTurn() {
+	if(currentPlayer == 1) {
+		//alert("Inside if 1");
+		if((player1.currentBlock+diceOutput)<=18){
+			movePlayer1(diceOutput);
+			player1.currentBlock += diceOutput;
+			player1.score+=100*diceOutput;
+			document.getElementById("p1Score").innerHTML="Player 1 Score: "+player1.score;
+			currentPlayer=2;
+		}
+	}
+	else {
+		//alert("Inside if 2");
+		if( (player2.currentBlock + diceOutput) <= 18 ){
+			movPlayer2(diceOutput);
+			player2.currentBlock+=diceOutput;
+			player2.score+=100*diceOutput;
+			document.getElementById("p2Score").innerHTML="Player 2 Score: "+player2.score;
+			currentPlayer=1;
+		}
+	}
+}
+
+var diceOutput=0;
+
+function AniDice() {
+	myVar=setInterval(rolldice,20)
+}
+
+function rolldice() {
+	var ranNum = Math.floor( 1 + Math.random() * 6 );
+	var dice = document.getElementById("die");
+	dice.src=ranNum+".jpg";
+	diceOutput=ranNum;
+}
+
+function stopDice() {
+	clearInterval(myVar);
+	playTurn();
+}
+
+</script>
+
+</body>
+</html>

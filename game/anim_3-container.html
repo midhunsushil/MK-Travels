@@ -1,0 +1,102 @@
+<html>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=v8CLxDn_oC6sbFtomYfSFR80RqNCF9jjeM0N34R0SfNT70vJLXAfan2yIY3qMlqtxFzfTZpBjMJICbvd0wd5zyrFEvGUIz2kFaRDTcPiorkoT-eYNSMz2tMkylwuM7xa5BV9geQ3ps7xLaSrD6g_FFVwjJhtiWa96ICWuPJ_4bEUfnNVNGwiWFkWuzX78rN0FYqgNrJRVWPSEAtS0s45Jv5PllsjdTmuwXUEC34mjz8jMLPywLrTEPbb9Zj3FK3Jilo0fGylN9UmTvPZoT6nKoQ7RCEBHEcO4kq6ULpt-O5wrwtdVUTpujZgdnQzrIy4Xrepxxnam6_5Bs2cYQiHeDJ4_Qhu8yvGlb2QCCUwAufviFgmB6VNYfcNaXBe_RT97qy0H68BknxkMQs1EXeF4QAMElTkI7TCumeP2TtUAf76QjyeDGVjGebodbHwN5cwwSwD4X50M6fCVROWJPajODxj9s_S0Vstog3mmeYR-ks" charset="UTF-8"></script><style>
+#container1 {
+  width: 500px;
+  height: 500px;
+  padding:50px 50px 50px 50px;
+  position: relative;
+  background: #292930;
+}
+#container2 {
+  width: 400px;
+  height: 400px;
+  padding:50px 50px 50px 50px;
+  position: relative;
+  background: #3EB650;
+}
+#container3 {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: #FCC133;
+  display: block;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+}
+#animate1 {
+  width: 50px;
+  height: 50px;
+  right: 0px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+}
+#animate2 {
+  width: 50px;
+  height: 50px;
+  right : 0px;
+  bottom : 0px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+}
+#animate3 {
+  width: 50px;
+  height: 50px;
+  bottom : 0px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+}
+</style>
+<body>
+
+<p><button onclick="setInterval(myMove,500);">Click Me</button></p>
+
+<div id ="container1">
+<div id ="container2" >
+<div id ="container3">
+<div id ="animate"></div>
+<div id ="animate1"></div>
+<div id ="animate2"></div>
+<div id ="animate3"></div>
+</div>
+</div>
+</div>
+<script>
+function myMove() {
+  var elem = document.getElementById("animate");
+  var elem1 = document.getElementById("animate1");
+  var elem2 = document.getElementById("animate2");
+  var elem3 = document.getElementById("animate3");
+ 
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    }
+else {
+      pos+=10;
+      elem.style.right = pos + "px";
+      elem.style.left = pos + "px";
+ 
+      elem1.style.top = pos + "px";
+      elem1.style.bottom = pos + "px";
+ 
+      elem2.style.right = pos + "px";
+ 
+ elem3.style.bottom = pos + "px";
+     
+    }
+  }
+}
+</script>
+
+</body>
+</html>
